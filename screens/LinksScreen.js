@@ -71,8 +71,8 @@ class LinksScreen extends React.Component {
         <View style={styles.container}>
           <ShareLocation person={{
             id: "asdf",
-            logitude: location.coords.longitude,
-            latitude: location.coords.latitude}}
+            longitude: location.coords.longitude,
+          latitude: location.coords.latitude}}
           />
           <MapView
             style={{ flex: 1 }}

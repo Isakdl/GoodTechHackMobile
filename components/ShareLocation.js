@@ -6,6 +6,7 @@ import { graphql } from 'react-apollo';
 // A mutation is made available on a callback called `mutate`
 // Other props of the wrapping component are passed through.
 function ShareLocation({ mutate, person }) {
+
   return (
     <Button
       onPress={() => mutate({ variables: { ...person}})}
@@ -19,7 +20,7 @@ function ShareLocation({ mutate, person }) {
 // You can also use `graphql` for GraphQL mutations
 export default graphql(gql`
   mutation createPerson($longitude: Float, $latitude: Float) {
-    createPerson(person: $person){
+    createPerson(longitude: $longitude,latitude: $latitude) {
       longitude
       latitude
     }

@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "apollo-client": "^2.2.5",
     "expo": "^25.0.0",
+    "graphql-tag": "^2.8.0",
     "react": "16.2.0",
+    "react-apollo": "^2.0.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-navigation": "^1.0.0-beta.27"
   },

@@ -1,7 +1,10 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { MapView } from 'expo';
+
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -9,7 +12,14 @@ export default class LinksScreen extends React.Component {
   };
 
   render() {
+    if(this.props.data.loading){
+      return <View><Text>Loading</Text></View>
+    } else {
+      console.error(this.props.data)
+      return <View><Text>Has loaded data</Text></View>
+    }
     return (
+
       <MapView
         style={{ flex: 1 }}
         initialRegion={{
@@ -31,3 +41,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+
+// export default graphql(gql`
+//   query hello {
+//     message
+//   }
+// `)(LinksScreen);

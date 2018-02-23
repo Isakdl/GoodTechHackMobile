@@ -6,7 +6,7 @@ import { MapView } from 'expo';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-export default class LinksScreen extends React.Component {
+class LinksScreen extends React.Component {
   static navigationOptions = {
     header:null,
   };
@@ -15,8 +15,7 @@ export default class LinksScreen extends React.Component {
     if(this.props.data.loading){
       return <View><Text>Loading</Text></View>
     } else {
-      console.error(this.props.data)
-      return <View><Text>Has loaded data</Text></View>
+      return <View><Text>{this.props.data.allPersons[0].id}</Text></View>
     }
     return (
 
@@ -43,8 +42,10 @@ const styles = StyleSheet.create({
 });
 
 
-// export default graphql(gql`
-//   query hello {
-//     message
-//   }
-// `)(LinksScreen);
+export default graphql(gql`
+  query {
+    allPersons {
+      id
+    }
+  }
+`)(LinksScreen);

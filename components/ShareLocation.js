@@ -8,7 +8,7 @@ import { graphql } from 'react-apollo';
 function ShareLocation({ mutate, person }) {
   return (
     <Button
-      onPress={() => mutate({ variables: { person}})}
+      onPress={() => mutate({ variables: { ...person}})}
       title="Share position"
       color="#841584"
       accessibilityLabel="Learn more about this purple button"
@@ -18,7 +18,7 @@ function ShareLocation({ mutate, person }) {
 
 // You can also use `graphql` for GraphQL mutations
 export default graphql(gql`
-  mutation createPerson {
+  mutation createPerson($longitude: Float, $latitude: Float) {
     createPerson(person: $person){
       longitude
       latitude

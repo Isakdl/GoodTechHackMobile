@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Platform, Button } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { MapView } from 'expo';
 import {Marker} from 'react-native-maps'
@@ -7,6 +7,8 @@ import { Constants, Location, Permissions } from 'expo';
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+
+import ShareLocation from '../components/ShareLocation'
 
 class LinksScreen extends React.Component {
     static navigationOptions = {
@@ -54,6 +56,10 @@ class LinksScreen extends React.Component {
 
     }
 
+    sharePosition(){
+
+    }
+
     render() {
       let location = this.state.location
 
@@ -62,6 +68,12 @@ class LinksScreen extends React.Component {
       }
 
       return (
+        <View style={styles.container}>
+          <ShareLocation person={{
+            id: "asdf",
+            logitude: location.coords.longitude,
+            latitude: location.coords.latitude}}
+          />
           <MapView
             style={{ flex: 1 }}
             initialRegion={{
@@ -74,6 +86,7 @@ class LinksScreen extends React.Component {
             {this.placeMarker([{latitude: location.coords.latitude,
             longitude: location.coords.longitude,id:1}])}
           </MapView>
+        </View>
     )
 
   }
@@ -82,7 +95,6 @@ class LinksScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
 });

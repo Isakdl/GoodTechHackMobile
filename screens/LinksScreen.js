@@ -5,7 +5,7 @@ import { MapView } from 'expo';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    header:null,
   };
 
   render() {

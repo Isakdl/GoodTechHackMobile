@@ -61,6 +61,7 @@ class MapScreen extends React.Component {
     }
 
     render() {
+      console.log(this.props)
       let location = this.state.location
 
       if(!location){
@@ -70,9 +71,8 @@ class MapScreen extends React.Component {
       return (
         <View style={styles.container}>
           <ShareLocation person={{
-            id: "asdf",
             longitude: location.coords.longitude,
-          latitude: location.coords.latitude}}
+            latitude: location.coords.latitude}}
           />
           <MapView
             style={{ flex: 1 }}

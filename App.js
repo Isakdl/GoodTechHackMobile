@@ -4,6 +4,15 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: 'https://api.graph.cool/relay/v1/cjdzsmim2332t0175wp40g39p' }),
+});
+
+
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,

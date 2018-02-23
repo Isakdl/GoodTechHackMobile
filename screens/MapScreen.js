@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 
 import ShareLocation from '../components/ShareLocation'
 
-class LinksScreen extends React.Component {
+class MapScreen extends React.Component {
     static navigationOptions = {
       header: null,
     };
@@ -106,4 +106,4 @@ export default graphql(gql`
       id
     }
   }
-`)(LinksScreen);
+`)(MapScreen);

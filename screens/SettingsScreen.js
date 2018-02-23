@@ -4,7 +4,7 @@ import { Constants, Location, Permissions } from 'expo';
 
 export default class SettingsScreen extends Component {
   static navigationOptions = {
-    title: 'app.json',
+    header:null,
   };
   state = {
     location: null,

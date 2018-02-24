@@ -10,6 +10,7 @@ import gql from 'graphql-tag';
 
 import ShareLocation from '../components/ShareLocation'
 
+
 class MapScreen extends React.Component {
     static navigationOptions = {
       header: null,
@@ -61,31 +62,35 @@ class MapScreen extends React.Component {
     }
 
     render() {
-      console.log(this.props)
       let location = this.state.location
 
       if(!location){
         return <View></View>
       }
 
+      let focused = true
+
       return (
         <View style={styles.container}>
-          <ShareLocation person={{
-            longitude: location.coords.longitude,
-            latitude: location.coords.latitude}}
-          />
+
+
           <MapView
             style={{ flex: 1 }}
             initialRegion={{
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                latitudeDelta: 0.0012,
+                longitudeDelta: 0.0011,
             }}
           >
             {this.placeMarker([{latitude: location.coords.latitude,
             longitude: location.coords.longitude,id:1}])}
           </MapView>
+          <ShareLocation person={{
+            longitude: location.coords.longitude,
+            latitude: location.coords.latitude}}
+          />
+
         </View>
     )
 

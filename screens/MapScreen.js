@@ -108,7 +108,8 @@ class MapScreen extends React.Component {
       markers.map(marker => {
         return (
           <Marker
-              key={marker.id}
+            key={marker.id}
+            image ={require('../assets/images/location.png')}
               coordinate ={{latitude:marker.latitude, longitude: marker.longitude}} />)
       })
     )
@@ -120,8 +121,8 @@ class MapScreen extends React.Component {
       springs.map(marker => {
         return (
           <Marker
-              size={10}
-              image ={require('../assets/images/waterdrop.png')}
+            size={10}
+            image ={require('../assets/images/waterdrop.png')}
               key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
             />)
       }))
@@ -183,6 +184,9 @@ class MapScreen extends React.Component {
           >
             {this.placeMarker([{latitude: location.coords.latitude,
             longitude: location.coords.longitude,id:1}])}
+            {this.placeWater(springs)}
+            {this.placeSights(sights)}
+            {this.placeShelter(shelters)}
           </MapView>
           <ShareLocation person={{
             longitude: location.coords.longitude,

@@ -3,14 +3,13 @@ import {View} from 'react-native'
 import {Button} from 'react-native';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-
 import FAB from 'react-native-fab'
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons,MaterialIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 
 // A mutation is made available on a callback called `mutate`
 // Other props of the wrapping component are passed through.
-function ShareLocation({ mutate, person }) {
+function ShareLocation({ mutate, person,onClick }) {
 
   let focused = true
 
@@ -20,14 +19,15 @@ function ShareLocation({ mutate, person }) {
         buttonColor={Colors.tabIconSelected}
         iconTextColor="#FFFFFF"
         onClickAction={() => {
-          if(this.props.onClick)
-            this.props.onClick()
+
+
+          onClick()
 
           mutate({variables: {...person}})}
         }
         visible={true}
-        iconTextComponent={<Ionicons
-          name="md-pin"
+        iconTextComponent={<MaterialIcons
+          name="location-off"
           color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
         />} />
 

@@ -5,12 +5,12 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import FAB from 'react-native-fab'
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons ,MaterialIcons} from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 
 // A mutation is made available on a callback called `mutate`
 // Other props of the wrapping component are passed through.
-function ShareLocation({ mutate, person }) {
+function ShareLocation({ mutate, person,onClick }) {
 
   let focused = true
 
@@ -20,9 +20,8 @@ function ShareLocation({ mutate, person }) {
         buttonColor={Colors.tabIconSelected}
         iconTextColor="#FFFFFF"
         onClickAction={() => {
-          if(this.props.onClick)
-            this.props.onClick()
-            
+
+          onClick()
           mutate({variables: {id: "cje10huf7m2dn0157f4n48fr1"}})}
         }
         visible={true}

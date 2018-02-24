@@ -4,8 +4,7 @@ import { ExpoLinksView } from '@expo/samples';
 import { MapView } from 'expo';
 import { Marker } from 'react-native-maps'
 import { Constants, Location, Permissions } from 'expo';
-
-
+import Locations from '../components/Location'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -66,7 +65,7 @@ const sights = [{
   longitude: 17.322742
 }]
 
-import ShareLocation from '../components/ShareLocation'
+
 
 
 class MapScreen extends React.Component {
@@ -171,8 +170,7 @@ class MapScreen extends React.Component {
 
       return (
         <View style={styles.container}>
-
-
+          
           <MapView
             style={{ flex: 1 }}
             initialRegion={{
@@ -188,7 +186,7 @@ class MapScreen extends React.Component {
             {this.placeSights(sights)}
             {this.placeShelter(shelters)}
           </MapView>
-          <ShareLocation person={{
+          <Locations person={{
             longitude: location.coords.longitude,
             latitude: location.coords.latitude}}
           />

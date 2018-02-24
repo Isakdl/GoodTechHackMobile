@@ -27,6 +27,28 @@ const springs = [{
   longitude: 17.328472,
 }]
 
+const shelters= [{
+  id:'1212sada',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.238341,
+  longitude: 17.105505,
+},{
+  id:'121asdas2',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.449341,
+  longitude: 17.405505,
+}, {
+  id:'231231212',
+  title: 'Kanten',
+  latitude: 62.108241,
+  longitude: 17.267216,
+}, {
+  id:'213123123',
+  title: 'Wifstavarv',
+  latitude: 62.381387,
+  longitude: 17.128472,
+}]
+
 import ShareLocation from '../components/ShareLocation'
 
 class MapScreen extends React.Component {
@@ -80,12 +102,27 @@ class MapScreen extends React.Component {
         springs.map(marker => {
           return (
             <Marker
+              size={10}
               image ={require('../assets/images/waterdrop.png')}
               key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
             />)
           }))
 
       }
+
+
+          placeShelter = (shelters) => {
+            return (
+              shelters.map(marker => {
+                return (
+                  <Marker
+                    size={10}
+                    image ={require('../assets/images/home-button.png')}
+                    key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
+                  />)
+                }))
+
+            }
 
       sharePosition() {
 
@@ -100,11 +137,6 @@ class MapScreen extends React.Component {
 
         return (
           <View style={styles.container}>
-            <ShareLocation person={{
-              id: "asdf",
-              longitude: location.coords.longitude,
-            latitude: location.coords.latitude}}
-            />
             <MapView
               style={{ flex: 1 }}
               initialRegion={{
@@ -116,8 +148,14 @@ class MapScreen extends React.Component {
             >
               {this.placeMarker([{latitude: location.coords.latitude,
               longitude: location.coords.longitude,id:1}])}
-          {this.placeWater(springs)}
-          </MapView>
+              {this.placeWater(springs)}
+              {this.placeShelter(shelters)}
+            </MapView>
+            <ShareLocation person={{
+              id: "asdf",
+              longitude: location.coords.longitude,
+            latitude: location.coords.latitude}}
+            />
         </View>
         )
 

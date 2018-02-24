@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "GoodTechHackMobile",
+    "name": "Take a Hike",
     "description": "A very interesting project.",
     "slug": "GoodTechHackMobile",
     "privacy": "public",
@@ -8,9 +8,9 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "",
+    "icon": "./assets/image/logohikeblack.png",
     "splash": {
-      "image": "",
+      "image": "./assets/image/logohikeblack.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

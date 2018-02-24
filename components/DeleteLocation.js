@@ -22,8 +22,8 @@ function ShareLocation({ mutate, person }) {
         onClickAction={() => {
           if(this.props.onClick)
             this.props.onClick()
-
-          mutate({variables: {...person}})}
+            
+          mutate({variables: {id: "cje10huf7m2dn0157f4n48fr1"}})}
         }
         visible={true}
         iconTextComponent={<Ionicons
@@ -37,8 +37,9 @@ function ShareLocation({ mutate, person }) {
 
 // You can also use `graphql` for GraphQL mutations
 export default graphql(gql`
-  mutation createPerson($longitude: Float, $latitude: Float) {
-    createPerson(longitude: $longitude,latitude: $latitude) {
+  mutation deletePerson($id: ID!) {
+    deletePerson(id: $id){
+      id
       longitude
       latitude
     }

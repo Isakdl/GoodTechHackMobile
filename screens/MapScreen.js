@@ -2,66 +2,164 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Platform, Button } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { MapView } from 'expo';
-import {Marker} from 'react-native-maps'
+import { Marker } from 'react-native-maps'
 import { Constants, Location, Permissions } from 'expo';
+
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+
+
+const springs = [{
+  id: '1212',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.449341,
+  longitude: 17.405505,
+}, {
+  id: '231231212',
+  title: 'Kanten',
+  latitude: 62.408241,
+  longitude: 17.167216,
+}, {
+  id: '213123123',
+  title: 'Wifstavarv',
+  latitude: 62.481387,
+  longitude: 17.328472,
+}]
+
+const shelters = [{
+  id: '1212sada',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.238341,
+  longitude: 17.105505,
+}, {
+  id: '121asdas2',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.449341,
+  longitude: 17.305505,
+}, {
+  id: '231231212',
+  title: 'Kanten',
+  latitude: 62.108241,
+  longitude: 17.267216,
+}, {
+  id: '213123123',
+  title: 'Wifstavarv',
+  latitude: 62.381387,
+  longitude: 17.128472,
+}]
+
+const sights = [{
+  id: '1212sada',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.368903,
+  longitude: 17.322742
+}, {
+  id: '121asdas2',
+  title: 'Alnö (G:a Kyrkan)',
+  latitude: 62.391452,
+  longitude: 17.312158,
+}, {
+  id: '231231212',
+  title: 'Kanten',
+  latitude: 62.368903,
+  longitude: 17.322742
+}]
 
 import ShareLocation from '../components/ShareLocation'
 
 
 class MapScreen extends React.Component {
-    static navigationOptions = {
-      header: null,
-    };
+  static navigationOptions = {
+    header: null,
+  };
 
-    state = {
-      location: null,
-      errorMessage: null,
-    };
+  state = {
+    location: null,
+    errorMessage: null,
+  };
 
-    componentWillMount() {
-      if (Platform.OS === 'android' && !Constants.isDevice) {
-        this.setState({
-          errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-        });
-      } else {
-        this._getLocationAsync();
-      }
-    }
-
-    _getLocationAsync = async () => {
-      let { status } = await Permissions.askAsync(Permissions.LOCATION);
-      if (status !== 'granted') {
-        this.setState({
-          errorMessage: 'Permission to access location was denied',
-        });
-      }
-
-      let location = await Location.getCurrentPositionAsync({
-        enableHighAccuracy: true,
+  componentWillMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
-      this.setState({ location });
-    };
+    } else {
+      this._getLocationAsync();
+    }
+  }
 
-    placeMarker = (markers) => {
-      return (
-        markers.map(marker => {
-          return(
+  _getLocationAsync = async() => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({
+      enableHighAccuracy: true,
+    });
+    this.setState({ location });
+  };
+
+  placeMarker = (markers) => {
+    return (
+      markers.map(marker => {
+        return (
           <Marker
-            key={marker.id}
-            coordinate ={{latitude:marker.latitude, longitude: marker.longitude}} />)
-        })
-      )
+              key={marker.id}
+              coordinate ={{latitude:marker.latitude, longitude: marker.longitude}} />)
+      })
+    )
 
-    }
+  }
 
-    sharePosition(){
+  placeWater = (springs) => {
+    return (
+      springs.map(marker => {
+        return (
+          <Marker
+              size={10}
+              image ={require('../assets/images/waterdrop.png')}
+              key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
+            />)
+      }))
 
-    }
+  }
 
-    render() {
+
+  placeShelter = (shelters) => {
+    return (
+      shelters.map(marker => {
+        return (
+          <Marker
+                    size={10}
+                    image ={require('../assets/images/home-button.png')}
+                    key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
+                  />)
+      }))
+
+  }
+
+  placeSights = (sights) => {
+    return (
+      sights.map(marker => {
+        return (
+          <Marker
+            size={10}
+            image ={require('../assets/images/public-park.png')}
+                    key = { marker.id } coordinate = { { latitude: marker.latitude, longitude: marker.longitude } }
+                  />)
+      }))
+
+  }
+
+  sharePosition() {
+
+  }
+
+  render() {
       let location = this.state.location
 
       if(!location){
@@ -97,6 +195,7 @@ class MapScreen extends React.Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,10 +204,12 @@ const styles = StyleSheet.create({
 });
 
 
-export default graphql(gql`
+
+export default graphql(gql `
   query {
     allPersons {
       id
     }
   }
+
 `)(MapScreen);

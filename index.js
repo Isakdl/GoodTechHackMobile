@@ -3,6 +3,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import MapScreen from './screens/MapScreen'
 
 
 
@@ -23,9 +24,7 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
+          <MapScreen/>
         </View>
       );
     }
@@ -34,8 +33,8 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require('./assets/images/waterdrop.png'),
+        require('./assets/images/logohikeblack.png'),
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar

@@ -16,17 +16,15 @@ function ShareLocation({ mutate, person }) {
 
   return (
     <View>
-
-
-    <FAB
-      buttonColor={Colors.tabIconSelected}
-      iconTextColor="#FFFFFF"
-      onClickAction={() => {console.log("FAB pressed")}}
-      visible={true}
-      iconTextComponent={<Ionicons
-        name="md-pin"
-        color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      />} />
+      <FAB
+        buttonColor={Colors.tabIconSelected}
+        iconTextColor="#FFFFFF"
+        onClickAction={() => {mutate({variables: {...person}})}}
+        visible={true}
+        iconTextComponent={<Ionicons
+          name="md-pin"
+          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+        />} />
 
       </View>
   )
